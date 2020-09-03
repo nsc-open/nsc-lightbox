@@ -1,0 +1,23 @@
+:global(.react-img-editor-mask){
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  height: 100%;
+  z-index: 1015;
+}
+
+:global(.react-img-editor-palette) {
+  background-image: none;
+  width: 100% !important;
+  margin-bottom: 10px;
+}
+
+:global(.react-img-editor-toolbar-icon i){
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  background: rgba(55, 55, 55, 0.9);
+  border-radius: 10px;
+}
