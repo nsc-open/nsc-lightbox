@@ -83,11 +83,9 @@ class ImageStaticMap extends Component {
         width = img.width
         height = img.height
         getImageSize && getImageSize({ width, height })
-        console.log('img.onload',width,height)
         callback({ width, height })
       }
     } else {
-      console.log('img.unonload',width,height)
       getImageSize && getImageSize({ width, height })
       callback({ width, height })
     }
