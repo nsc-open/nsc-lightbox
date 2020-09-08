@@ -1,71 +1,71 @@
 import React, { Component } from 'react'
-import { Icon, message, Modal } from 'antd'
+import { Icon, message, Button } from 'antd'
 import { Lightbox } from 'nsc-lightbox'
 import { Uploader } from 'nsc-uploader'
 import 'antd/dist/antd.css'
+import BaseModal from './BaseModal'
+
 const OSS = require('ali-oss')
 
 const isDoc = (img) => {
-  console.log(img)
   return img.fileExt.indexOf('doc') !== -1 || img.fileExt.indexOf('xls') !== -1
 }
 
 const OSS_ENDPOINT = 'oss-cn-beijing'
 const OSS_BUCKET = 'corridorcleaningphoto'
 const defaultFiles = [{
-  cloudDir: null,
-  comment: null,
-  createdAt: "2020-06-12 09:13:55",
-  createdBy: null,
-  encodedFileName: "a81b88e1d05964f450d9e0c3b98ea084_1591923471032",
-  fileExt: "doc",
-  fileName: "360-photo-2",
-  fileSize: 34250,
-  fileType: "application/doc",
-  id: "fc1fbd30-ac49-11ea-96d1-7dc79c40ecd3",
+  category: "print",
+  createdAt: "2020-09-07 15:34:13",
+  createdBy: "1732",
+  encodedFileName: "8e67209cd9a58cdfc9469edfa1484866_1599459834761",
+  fileExt: "jpg",
+  fileName: "测试图片3.jpg",
+  fileSize: "268713",
+  fileType: "image/jpeg",
+  id: "24137691-f0df-11ea-8146-f9a5d6b3bf59",
   isDeleted: null,
-  setId: "c0660b70-ac47-11ea-b571-cd04ff54552a",
-  sortNo: null,
-  title: null,
-  updatedAt: "2020-06-12 09:13:54",
-  updatedBy: "74",
-  uploadedFrom: null,
-  uri: 'http://47.92.150.213:7040/api/workReports/93770d30-af0d-11ea-a637-236812180fd0'
+  sortNo: "1",
+  updatedAt: "2020-09-07 15:52:55",
+  updatedBy: "1732",
+  uri: "http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/8e67209cd9a58cdfc9469edfa1484866_1599459834761",
+  volCode: null,
+  volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
+  volRevision: "7",
 }, {
-  cloudDir: null,
-  comment: null,
-  createdAt: "2020-06-12 09:13:50",
-  createdBy: null,
-  encodedFileName: "a81b88e1d059640d9e0c3b98ea084_159192341032",
-  fileExt: "pdf",
-  fileName: "2",
-  fileSize: 34250,
-  fileType: "application/pdf",
-  id: "fc1fbd30-ac49-11ea-96-7dc79c40ecd3",
+  category: "print",
+  createdAt: "2020-09-07 15:34:13",
+  createdBy: "1732",
+  encodedFileName: "647d57d9d156b144b276c0fcae9fd761_1599459834788",
+  fileExt: "jpg",
+  fileName: "微信图片_20200616152747.jpg",
+  fileSize: "41219",
+  fileType: "image/jpeg",
+  id: "24137692-f0df-11ea-8146-f9a5d6b3bf59",
   isDeleted: null,
-  setId: "c0660b70-ac47-11ea-b571-cd0sf54s52a",
-  sortNo: null,
-  title: null,
-  updatedAt: "2020-06-12 09:13:50",
-  updatedBy: "74",
-  uploadedFrom: null,
-  uri: 'http://47.92.150.213:7040/api/workReports/93770d30-af0d-11ea-a637-236812180fd0'
+  sortNo: "2",
+  updatedAt: "2020-09-07 15:52:55",
+  updatedBy: "1732",
+  uri: "http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/647d57d9d156b144b276c0fcae9fd761_1599459834788",
+  volCode: null,
+  volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
+  volRevision: "7",
 }
 ]
 
 const ossParams = {
   region: OSS_ENDPOINT,
   bucket: OSS_BUCKET,
-  accessKeyId: "STS.NU4CMorP1NfvoLLGuznWGyMtR",
-  accessKeySecret: "6Gta2wEzD7NNHmidnaBQxWCCrNt8M2jxKEQkNq9hKbKH",
-  stsToken: "CAISjgJ1q6Ft5B2yfSjIr5aBCPfbn48Q+aSdbWr9o3UvYthrlojfsDz2IHpEf3NhAO8Yt/swn2pY5vwclq19UZpOHY4nhWbcqMY5yxioRqackf7XhOV2tf/IMGyXDAGBq622Su7lTdTbV+6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq/b9kI++kkOP0gagl75P/NisfMn+NJJWUc0hA4vv7otfbbHc1SNc0R9O+ZptgbZMkTW95YvNWAMAukrYarWLqYc/fFUnfNszH69Vsf77juZkve/ekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAFG+bXyYKdWozoKCoEQGn6bMt8tHbRQam+a11tQ9mppEhjXN+stUcw8B1i2iWQxua5r2ytHJr3KU8caOzdCFyZsDhEt7FDlSetHZDluu57ebSssWH3zrchKnfvtwQmN29ZAU4ZThpsG/HjFAZHCyn8IqKH0qnu+vZGzR7wfOrb0rQ=="
+  accessKeyId: "STS.NUff6x81sVKWWBzrh8LSJuurh",
+  accessKeySecret: "F5ARFnrAZahw7HHfwkR9Lu7StxJ86Pw9EwRyDvpaWPTz",
+  Expiration: "2020-09-08T07:27:30Z",
+  stsToken: "CAISjgJ1q6Ft5B2yfSjIr5bTLYzM1e5S4Ym8VWTLlmhtQNxmmrDZijz2IHpEf3NhAO8Yt/swn2pY5vwclq19UZpOHYIJ9kfeqMY5yxioRqackf7XhOV2tf/IMGyXDAGBq622Su7lTdTbV+6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq/b9kI++kkOP0gagl75P/NisfMn+NJJWUc0hA4vv7otfbbHc1SNc0R9O+ZptgbZMkTW95YvNWAMAukrYarWLqYc/fFUnfNszH69Vsf77juZkve/ekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAFoSOwdbiAPck0UjcfPCoCvSfnnoGxpTWioGZ2YRE86rJ7hdmOJXI1KpCsh8sMniuXrw8pjbKmoNike9ql/WbJIk427uH4li34huGnWT4vp21oYunWj9TqLTMTG22ZAgvfp8a+pX2YZbvuNW7N+CIfkjM0M6Bhv0p/BVkQzmOKRYQ=="
 }
 
-class App extends Component {
+class CusModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      fileList: defaultFiles,
+      fileList: [],
       previewVisible: false,
     }
   }
@@ -97,7 +97,7 @@ class App extends Component {
   }
 
   onDownload = (file) => {
-    downloadFile(signatureUrl(file.uri), file.fileName)
+    window.open(this.signatureUrl(file.uri))
   }
 
   onSortEnd = (oldList, newList) => {
@@ -115,6 +115,10 @@ class App extends Component {
   onCancel = () => {
     console.log('onCancel')
     this.setState({ previewVisible: false, lightboxImages: [] })
+  }
+
+  onVisible = () => {
+    this.setState({ fileList: defaultFiles })
   }
 
   render() {
@@ -144,24 +148,38 @@ class App extends Component {
     }
     const displayTools = ['zoomIn', 'addInfo', 'zoomOut', 'prev', 'next', 'close',]
     return (
-      <div style={{ margin: '50px', width: '50%' }}>
-        <Uploader
-          {...uploadProps}
-          showUploadList={{ showDownloadIcon: true }}
-        />
-        {previewVisible && lightboxImages.length ? <Lightbox
-          visible={previewVisible}
-          imgvImages={lightboxImages}
-          activeIndex={lightboxIndex}
-          displayTools={displayTools}
-          onCancel={this.onCancel}
-        /> : null
-        }
-      </div>
-
+      <BaseModal onVisible={this.onVisible}>
+        <div style={{ margin: '50px', width: '50%' }}>
+          <Uploader
+            {...uploadProps}
+            showUploadList={{ showDownloadIcon: true }}
+          />
+          {previewVisible && lightboxImages.length ? <Lightbox
+            visible={previewVisible}
+            imgvImages={lightboxImages}
+            activeIndex={lightboxIndex}
+            displayTools={displayTools}
+            onCancel={this.onCancel}
+          /> : null
+          }
+        </div>
+      </BaseModal>
     )
   }
 }
 
-
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      fileList: defaultFiles,
+      previewVisible: false,
+    }
+  }
+  render() {
+    return (
+      <CusModal><Button>click</Button></CusModal>
+    )
+  }
+}
 export default App

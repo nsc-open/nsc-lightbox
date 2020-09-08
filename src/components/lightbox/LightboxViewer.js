@@ -90,6 +90,7 @@ class LightboxViewer extends Component {
   }
 
   getImageSize = ({ width, height }) => {
+    console.log('width',width,height)
     this.setState({ imgW: width, imgH: height })
   }
 

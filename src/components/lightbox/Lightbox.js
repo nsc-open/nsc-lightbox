@@ -22,6 +22,14 @@ class Lightbox extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { imgvImages } = this.props
+    if (imgvImages !== prevProps.imgvImages) {
+      const imgvActiveImage = 'activeIndex' in this.props ? imgvImages[this.props.activeIndex] : imgvImages[0]
+      this.setState({ imgvActiveImage })
+    }
+  }
+
   onChange = (imgvActiveImage) => {
     this.setState({ imgvActiveImage })
   }
@@ -70,7 +78,6 @@ class Lightbox extends Component {
   }
 
   onCloseClick = () => {
-    console.log('close')
     const { onCancel } = this.props
     onCancel && onCancel()
   }
@@ -92,28 +99,26 @@ class Lightbox extends Component {
     const displayTools = withDrawer || customTools ? ['*'] : 'displayTools' in this.props ? this.props.displayTools : ['zoomIn', 'zoomOut', 'prev', 'next', 'close',]
 
     return (
-      <div>
-        <div className='lightbox-viewer lightbox-viewer-transition' style={visible ? showStyle : hiddenStyle}>
-          <div className='lightbox-viewer-mask' onClick={this.onCloseClick}></div>
-          {!drawboxVisible ?
-            <LightboxViewer
-              imgvImages={imgvImages}
-              imgvActiveImage={imgvActiveImage}
-              activeIndex={activeIndex}
-              onChange={this.onChange}
-              customTools={customTools}
-              displayTools={displayTools}
-              onDeleteInfoClick={this.onDeleteInfoClick}
-              onAddInfoClick={this.onAddInfoClick}
-              onCloseClick={this.onCloseClick}
-            />
-            : <Drawbox
-              src={uri}
-              onCloseClick={this.onCloseClick}
-              onSaveClick={this.onSaveClick}
-              dataURL={base64DataURL}
-            />}
-        </div>
+      <div className='lightbox-viewer lightbox-viewer-transition' style={visible ? showStyle : hiddenStyle}>
+        <div className='lightbox-viewer-mask' onClick={this.onCloseClick}></div>
+        {!drawboxVisible && imgvActiveImage ?
+          <LightboxViewer
+            imgvImages={imgvImages}
+            imgvActiveImage={imgvActiveImage}
+            activeIndex={activeIndex}
+            onChange={this.onChange}
+            customTools={customTools}
+            displayTools={displayTools}
+            onDeleteInfoClick={this.onDeleteInfoClick}
+            onAddInfoClick={this.onAddInfoClick}
+            onCloseClick={this.onCloseClick}
+          />
+          : <Drawbox
+            src={uri}
+            onCloseClick={this.onCloseClick}
+            onSaveClick={this.onSaveClick}
+            dataURL={base64DataURL}
+          />}
       </div>
     )
   }
