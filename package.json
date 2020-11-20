@@ -38,6 +38,7 @@
     "@rollup/plugin-babel": "^5.2.0",
     "@svgr/rollup": "^5.4.0",
     "babel-eslint": "^10.0.3",
+    "babel-plugin-import": "^1.13.1",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "gh-pages": "^2.2.0",
