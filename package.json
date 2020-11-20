@@ -53,6 +53,7 @@
     "es"
   ],
   "dependencies": {
+    "antd": "3.x",
     "react-img-editor": "0.1.4"
   }
 }

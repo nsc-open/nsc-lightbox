@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Icon, message, Button } from 'antd'
 import { Lightbox } from 'nsc-lightbox'
 import { Uploader } from 'nsc-uploader'
-import 'antd/dist/antd.css'
 import BaseModal from './BaseModal'
 
 const OSS = require('ali-oss')

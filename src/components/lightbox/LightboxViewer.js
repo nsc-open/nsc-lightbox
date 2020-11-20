@@ -5,7 +5,8 @@ import ImageStaticMap from './ImageStaticMap'
 import LightboxToolbar from './LightboxToolbar'
 import LightboxNav from './LightboxNav'
 import IFrame from './IFrame'
-import { message, Icon } from 'antd'
+import message from 'antd/lib/message'
+import Icon from 'antd/lib/icon'
 //import './LightboxViewer.css'
 
 const isLink = (img) => {
