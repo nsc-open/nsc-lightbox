@@ -2,10 +2,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import LightboxViewer from './LightboxViewer';
-import Drawbox from '../drawbox/Drawbox';
 import '../../assets/fonts/icon-font/iconfont.css'
 import './index.css'
-import "react-img-editor/assets/index.css"
 
 class Lightbox extends Component {
 
@@ -34,18 +32,6 @@ class Lightbox extends Component {
     this.setState({ imgvActiveImage })
   }
 
-  onAddInfoClick = () => {
-    this.setState({ drawboxVisible: true })
-  }
-
-  onDeleteInfoClick = () => {
-    this.onDeleteClick()
-  }
-
-  hideDrawViewerHandler = () => {
-    this.setState({ drawboxVisible: false })
-  }
-
   onSaveClick = (dataURL) => {
     const { imgvActiveImage } = this.state
     if (dataURL) {
@@ -60,33 +46,17 @@ class Lightbox extends Component {
     }
   }
 
-  onDeleteClick = () => {
-    const { imgvActiveImage } = this.state
-    confirm({
-      title: '删除确认',
-      content: `确认删除该批注？`,
-      onOk: () => {
-        const result = this.props.onDeleteInfoClick(imgvActiveImage)
-        if (result.then) {
-          result.then(r => r !== false && this.onCloseClick())
-        } else if (result !== false) {
-          this.onCloseClick()
-        }
-      }
-    })
-
-  }
 
   onCloseClick = () => {
+    console.log('close')
     const { onCancel } = this.props
     onCancel && onCancel()
   }
 
   render() {
-    const { imgvImages, visible, withDrawer, customTools ,activeIndex } = this.props
-    const { imgvActiveImage, drawboxVisible } = this.state
-    const { uri, base64DataURL } = imgvActiveImage
-
+    const { imgvImages, visible, withDrawer, customTools ,activeIndex ,toolposition } = this.props
+    const { imgvActiveImage } = this.state
+    console.log('imgvActiveImage',imgvActiveImage)
     const showStyle = {
       'opacity': 1,
       'display': 'block'
@@ -101,7 +71,7 @@ class Lightbox extends Component {
     return (
       <div className='lightbox-viewer lightbox-viewer-transition' style={visible ? showStyle : hiddenStyle}>
         <div className='lightbox-viewer-mask' onClick={this.onCloseClick}></div>
-        {!drawboxVisible && imgvActiveImage ?
+        {imgvActiveImage &&
           <LightboxViewer
             imgvImages={imgvImages}
             imgvActiveImage={imgvActiveImage}
@@ -109,16 +79,10 @@ class Lightbox extends Component {
             onChange={this.onChange}
             customTools={customTools}
             displayTools={displayTools}
-            onDeleteInfoClick={this.onDeleteInfoClick}
-            onAddInfoClick={this.onAddInfoClick}
             onCloseClick={this.onCloseClick}
+            toolposition={toolposition}
           />
-          : <Drawbox
-            src={uri}
-            onCloseClick={this.onCloseClick}
-            onSaveClick={this.onSaveClick}
-            dataURL={base64DataURL}
-          />}
+        }
       </div>
     )
   }
@@ -135,6 +99,7 @@ Lightbox.defaultProps = {
   visible: false,
   imgvImages: [],
   withDrawer: false,
+  toolposition:'bottom'
 }
 
 export default Lightbox;

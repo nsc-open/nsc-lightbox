@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Spin from 'antd/lib/spin'
+import { ActivityIndicator } from 'antd-mobile';
 import './IFrame.css'
 
 /**
@@ -21,20 +21,24 @@ class IFrame extends Component {
     }
   } */
 
-  handleOnLoad () {
+  handleOnLoad() {
     this.setState({ loading: false })
   }
 
-  getIFrame () {
+  getIFrame() {
     return this.refs.frame
   }
 
-  render () {
+  render() {
     const { src, children } = this.props
     return (
-      <div className='container'>
-        <Spin spinning={this.state.loading} className='spinner' />
-        <iframe ref="frame" className='iframe' src={src} onLoad={() => this.handleOnLoad()}></iframe>
+      <div className={'container'}>
+        <ActivityIndicator
+          toast
+          text="Loading..."
+          animating={this.state.loading}
+        />
+        <iframe ref="frame" className={'iframe'} src={src} onLoad={() => this.handleOnLoad()}></iframe>
         {!this.state.loading ? children : null}
       </div>
     )

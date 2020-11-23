@@ -21,7 +21,7 @@
     "predeploy": "cd example && yarn install && yarn run build"
   },
   "peerDependencies": {
-    "antd": "3.x",
+    "antd-mobile": "^2.3.4",
     "lodash": "^4.17.15",
     "ol": "^6.3.1",
     "prop-types": "^15.7.2",
@@ -54,7 +54,6 @@
     "es"
   ],
   "dependencies": {
-    "antd": "3.x",
     "react-img-editor": "0.1.4"
   }
 }

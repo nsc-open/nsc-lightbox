@@ -7,13 +7,12 @@ import { getCenter } from "ol/extent";
 import ImageLayer from "ol/layer/Image";
 import Projection from "ol/proj/Projection";
 import ImageStatic from "ol/source/ImageStatic";
-import { getWindowSize } from './ui'
-import Spin from 'antd/lib/spin'
+import { ActivityIndicator } from 'antd-mobile';
 
 // Map views always need a projection.  Here we just want to map image
 // coordinates directly to map coordinates, so we create a projection that uses
 // the image extent in pixels.
-const { width, height } = getWindowSize()
+
 
 class ImageStaticMap extends Component {
   imgObj = null
@@ -163,7 +162,11 @@ class ImageStaticMap extends Component {
     const { spinning } = this.state
     return (
       <>
-        {spinning ? <Spin size="large" style={{ position: 'absolute', zIndex: 99999, left: '50%', top: '50%' }} /> : null}
+        <ActivityIndicator
+          toast
+          text="Loading..."
+          animating={spinning}
+        />
         <div ref={m => this.mountNode = m} className="map" style={{ width: '100%', height: '100%' }}></div>
       </>
     )

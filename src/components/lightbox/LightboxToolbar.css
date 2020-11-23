@@ -1,0 +1,54 @@
+.lightbox-viewer-toolbar-bottom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+}
+
+.lightbox-viewer-toolbar-left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.lightbox-viewer-toolbar-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.lightbox-viewer-toolbar-top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+}
+
+.lightbox-viewer-toolbar-icon{
+  padding: 5px;
+}
+
+.lightbox-viewer-toolbar-icon i{
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  background: rgba(55, 55, 55, 0.9);
+  border-radius: 10px;
+  color:#fff;
+}
+
+.lightbox-viewer-toolbar-icon .activated i{
+    color: #7DB5FD;
+}
+
+.lightbox-viewer-toolbar-icon:hover i{
+  background-color: #F6F6F9;
+}
+.lightbox-viewer-toolbar-icon .disabled i{
+  color: #D4D4D9;
+  background-color: inherit;
+}

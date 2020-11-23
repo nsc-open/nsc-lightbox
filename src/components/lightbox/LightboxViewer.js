@@ -5,9 +5,7 @@ import ImageStaticMap from './ImageStaticMap'
 import LightboxToolbar from './LightboxToolbar'
 import LightboxNav from './LightboxNav'
 import IFrame from './IFrame'
-import message from 'antd/lib/message'
-import Icon from 'antd/lib/icon'
-//import './LightboxViewer.css'
+import { Toast, Icon } from 'antd-mobile';
 
 const isLink = (img) => {
   const fileType = img.fileType ? img.fileType : ''
@@ -31,9 +29,9 @@ class LightboxViewer extends Component {
   }
 
   componentWillMount() {
-    const { imgvActiveImage ,activeIndex } = this.props
+    const { imgvActiveImage, activeIndex } = this.props
     if (imgvActiveImage) {
-      const obj = { visibleMap: isImg(imgvActiveImage), visibleLink: isLink(imgvActiveImage) , activeIndex:activeIndex }
+      const obj = { visibleMap: isImg(imgvActiveImage), visibleLink: isLink(imgvActiveImage), activeIndex: activeIndex }
       this.setState(obj)
     }
   }
@@ -61,7 +59,7 @@ class LightboxViewer extends Component {
       this.setState({ activeIndex: index, showInfo: true, visibleMap: isImg(prevImage), visibleLink: isLink(prevImage) })
       onChange && onChange(prevImage)
     } else {
-      message.info('到头了', .5)
+      Toast.info('到头了', .5)
     }
   }
 
@@ -74,7 +72,7 @@ class LightboxViewer extends Component {
       this.setState({ activeIndex: index, showInfo: true, visibleMap: isImg(nextImage), visibleLink: isLink(nextImage) })
       onChange && onChange(nextImage)
     } else {
-      message.info('到尾了', .5)
+      Toast.info('到尾了', .5)
     }
   }
 
@@ -91,14 +89,14 @@ class LightboxViewer extends Component {
   }
 
   getImageSize = ({ width, height }) => {
-    console.log('width',width,height)
+    console.log('width', width, height)
     this.setState({ imgW: width, imgH: height })
   }
 
   render() {
-    const { imgvImages,imgvActiveImage, onDeleteInfoClick, onAddInfoClick, onCloseClick, displayTools, customTools } = this.props
+    const { imgvImages, imgvActiveImage, onDeleteInfoClick, onAddInfoClick, onCloseClick, displayTools, customTools, toolposition } = this.props
     const { mapZoom, activeIndex, imgH, imgW, visibleLink, visibleMap, showInfo } = this.state
-    const uri= imgvActiveImage ? imgvActiveImage.uri : ''
+    const uri = imgvActiveImage ? imgvActiveImage.uri : ''
     const base64DataURL = imgvActiveImage ? imgvActiveImage.base64DataURL : ''
 
     const tools = customTools ? customTools : [
@@ -137,33 +135,55 @@ class LightboxViewer extends Component {
           {
             !visibleMap && !visibleLink &&
             <div style={{ color: '#fff', minHeight: '500px', fontSize: '16px', lineHeight: '40px', margin: '0 auto', textAlign: 'center', paddingTop: '30px' }}>
-              <Icon type="exclamation-circle" style={{ fontSize: '35px' }} />
+              <Icon type="cross-circle" style={{ fontSize: '35px' }} />
               <div>该文件不支持预览</div>
             </div>
           }
         </div>
-        <div className="lightbox-viewer-footer" style={{ zIndex: 9999 }} >
-          <p className="lightbox-viewer-attribute">
-            <span className="lightbox-viewer-img-details">{`(${imgW} x ${imgH})`}</span>
-            <span className="lightbox-viewer-showTotal">{`${activeIndex + 1} of ${imgvImages.length}`}</span>
-          </p>
-          <LightboxToolbar
-            tools={tools}
-            onZoomInClick={this.onZoomInClick}
-            onZoomOutClick={this.onZoomOutClick}
-            onPrevClick={this.onPrevClick}
-            onNextClick={this.onNextClick}
-            onShowInfoClick={this.onShowInfoClick}
-            onDeleteInfoClick={onDeleteInfoClick}
-            onAddInfoClick={onAddInfoClick}
-            onCloseClick={onCloseClick}
-          />
-          <LightboxNav
-            images={imgvImages}
-            activeIndex={activeIndex}
-            onChangeImg={this.handleChangeImg}
-          />
-        </div>
+        {
+          toolposition === 'bottom' ?
+            <div className="lightbox-viewer-footer" style={{ zIndex: 9999 }} >
+              <LightboxToolbar
+                tools={tools}
+                onZoomInClick={this.onZoomInClick}
+                onZoomOutClick={this.onZoomOutClick}
+                onPrevClick={this.onPrevClick}
+                onNextClick={this.onNextClick}
+                onShowInfoClick={this.onShowInfoClick}
+                onDeleteInfoClick={onDeleteInfoClick}
+                onAddInfoClick={onAddInfoClick}
+                onCloseClick={onCloseClick}
+                toolposition={toolposition}
+              />
+            </div>
+            : <>
+              <div className={`lightbox-viewer-footer-${toolposition}`} style={{ zIndex: 9999 }} >
+                <LightboxToolbar
+                  tools={tools}
+                  onZoomInClick={this.onZoomInClick}
+                  onZoomOutClick={this.onZoomOutClick}
+                  onPrevClick={this.onPrevClick}
+                  onNextClick={this.onNextClick}
+                  onShowInfoClick={this.onShowInfoClick}
+                  onDeleteInfoClick={onDeleteInfoClick}
+                  onAddInfoClick={onAddInfoClick}
+                  onCloseClick={onCloseClick}
+                  toolposition={toolposition}
+                />
+              </div>
+              <div className="lightbox-viewer-footer" style={{ zIndex: 9999 }} >
+                <p className="lightbox-viewer-attribute">
+                  <span className="lightbox-viewer-img-details">{`(${imgW} x ${imgH})`}</span>
+                  <span className="lightbox-viewer-showTotal">{`${activeIndex + 1} of ${imgvImages.length}`}</span>
+                </p>
+                <LightboxNav
+                  images={imgvImages}
+                  activeIndex={activeIndex}
+                  onChangeImg={this.handleChangeImg}
+                />
+              </div>
+            </>
+        }
       </div>
     )
   }
