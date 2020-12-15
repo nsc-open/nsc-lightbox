@@ -98,7 +98,7 @@
   .lightbox-viewer-footer{
     position: fixed;
     right: 0;
-    bottom: 20px;
+    bottom: 0;
     left: 0;
     overflow: hidden;
     text-align: center;
