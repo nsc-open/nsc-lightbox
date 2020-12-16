@@ -36,16 +36,16 @@ const defaultFiles = [{
   createdAt: "2020-09-07 15:34:13",
   createdBy: "1732",
   encodedFileName: "647d57d9d156b144b276c0fcae9fd761_1599459834788",
-  fileExt: "jpg",
-  fileName: "微信图片_20200616152747.jpg",
+  fileExt: "pdf",
+  fileName: "微信图片_20200616152747.pdf",
   fileSize: "41219",
-  fileType: "image/jpeg",
+  fileType: "pdf",
   id: "24137692-f0df-11ea-8146-f9a5d6b3bf59",
   isDeleted: null,
   sortNo: "2",
   updatedAt: "2020-09-07 15:52:55",
   updatedBy: "1732",
-  uri: "http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/647d57d9d156b144b276c0fcae9fd761_1599459834788",
+  uri: "http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/72fccc852992f4cedb9ecd72a4347655?OSSAccessKeyId=STS.NToFKDw5ypc4mepeoEoFdUmvJ&Expires=1608110953&Signature=OJPIUhbWtxOpTGfEh4bjaD3BD3w%3D&security-token=CAISjgJ1q6Ft5B2yfSjIr5faDfHwmupYx6Hfb0PBgW8QY8lIuqjdqDz2IHpEf3NhAO8Yt%2Fswn2pY5vwclq19UZpOHaY3yXT%2BqMY5yxioRqackf7XhOV2tf%2FIMGyXDAGBq622Su7lTdTbV%2B6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq%2Fb9kI%2B%2BkkOP0gagl75P%2FNisfMn%2BNJJWUc0hA4vv7otfbbHc1SNc0R9O%2BZptgbZMkTW95YvNWAMAukrYarWLqYc%2FfFUnfNszH69Vsf77juZkve%2FekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAFTnGzFis3kw5YI0tM69gGRsleEUIqj78CsgdA%2BE3z29figqj1L6oYwMq1SpLZqOg2xJVbgytyiyzbZrvZvtnXWQDULamgmG57u85SYAYSbVRvrkJl5jqEMuRmtmjS0gETQG64RYcgT4zBoDBFRRS35tbbhJ3iVgRXMDSdwNPIqTw%3D%3D",
   volCode: null,
   volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
   volRevision: "7",
@@ -87,7 +87,7 @@ class CusModal extends Component {
   handlePreview = async (file) => {
     console.log(file)
     const { fileList } = this.state
-    const lightboxImages = fileList.map(a => ({ ...a, alt: a.name, uri: isDoc(a) ? `https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(this.signatureUrl(a.uri))}` : this.signatureUrl(a.uri) }))
+    const lightboxImages = fileList.map(a => ({ ...a, alt: a.name, uri: isDoc(a) ? `https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(this.signatureUrl(a.uri))}` : a.uri }))
     const lightboxIndex = (fileList.map(a => a.id).indexOf(file.id) || 0)
     this.setState({
       lightboxImages,
