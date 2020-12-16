@@ -10,8 +10,8 @@ const prefixCls = 'react-img-editor'
 const defaultTools = [
   { name: 'zoomIn', iconfont: 'icon-zoomIn', title: '放大' },
   { name: 'zoomOut', iconfont: 'icon-zoomOut', title: '缩小' },
-  { name: 'prev', iconfont: 'icon-prev', title: '上一页' },
-  { name: 'next', iconfont: `icon-next`, title: `下一页` },
+  { name: 'prev', iconfont: 'icon-prev', title: '上一项' },
+  { name: 'next', iconfont: `icon-next`, title: `下一项` },
   { name: 'close', iconfont: 'icon-close', title: '关闭' },
 ]
 

@@ -21,20 +21,20 @@ class IFrame extends Component {
     }
   } */
 
-  handleOnLoad () {
+  handleOnLoad() {
     this.setState({ loading: false })
   }
 
-  getIFrame () {
+  getIFrame() {
     return this.refs.frame
   }
 
-  render () {
-    const { src, children } = this.props
+  render() {
+    const { src, children ,style } = this.props
     return (
       <div className='container'>
         <Spin spinning={this.state.loading} className='spinner' />
-        <iframe ref="frame" className='iframe' src={src} onLoad={() => this.handleOnLoad()}></iframe>
+        <iframe ref="frame" className='iframe' style={{...style}} src={src} onLoad={() => this.handleOnLoad()}></iframe>
         {!this.state.loading ? children : null}
       </div>
     )

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { findIndex } from 'lodash'
+import ReactDom from 'react-dom'
 import ImageStaticMap from './ImageStaticMap'
 import LightboxToolbar from './LightboxToolbar'
 import LightboxNav from './LightboxNav'
 import IFrame from './IFrame'
 import { message, Icon } from 'antd'
-//import './LightboxViewer.css'
 
 const isLink = (img) => {
   const fileType = img.fileType ? img.fileType : ''
@@ -30,11 +30,12 @@ class LightboxViewer extends Component {
   }
 
   componentWillMount() {
-    const { imgvActiveImage ,activeIndex } = this.props
+    const { imgvActiveImage, activeIndex } = this.props
     if (imgvActiveImage) {
-      const obj = { visibleMap: isImg(imgvActiveImage), visibleLink: isLink(imgvActiveImage) , activeIndex:activeIndex }
+      const obj = { visibleMap: isImg(imgvActiveImage), visibleLink: isLink(imgvActiveImage), activeIndex: activeIndex }
       this.setState(obj)
     }
+
   }
 
   onZoomInClick = () => {
@@ -90,24 +91,24 @@ class LightboxViewer extends Component {
   }
 
   getImageSize = ({ width, height }) => {
-    console.log('width',width,height)
+    console.log('width', width, height)
     this.setState({ imgW: width, imgH: height })
   }
 
   render() {
-    const { imgvImages,imgvActiveImage, onDeleteInfoClick, onAddInfoClick, onCloseClick, displayTools, customTools } = this.props
+    const { imgvImages, imgvActiveImage, onDeleteInfoClick, onAddInfoClick, onCloseClick, displayTools, customTools, showAttribute, showNav, showToolbar } = this.props
     const { mapZoom, activeIndex, imgH, imgW, visibleLink, visibleMap, showInfo } = this.state
-    const uri= imgvActiveImage ? imgvActiveImage.uri : ''
+    const uri = imgvActiveImage ? imgvActiveImage.uri : ''
     const base64DataURL = imgvActiveImage ? imgvActiveImage.base64DataURL : ''
 
     const tools = customTools ? customTools : [
-      { name: 'zoomIn', iconfont: 'icon-zoomIn', title: '放大' },
-      { name: 'zoomOut', iconfont: 'icon-zoomOut', title: '缩小' },
+      { name: 'zoomIn', iconfont: 'icon-zoomIn', title: '放大', disable: visibleLink ? true :false},
+      { name: 'zoomOut', iconfont: 'icon-zoomOut', title: '缩小', disable: visibleLink ? true : false },
       { name: 'addInfo', iconfont: 'icon-formOutline', title: '添加批注' },
       { name: 'deleteInfo', iconfont: 'icon-deleteInfo', title: '删除批注', hidden: base64DataURL ? false : true },
       { name: 'showInfo', iconfont: `${showInfo ? 'icon-showInfo' : 'icon-hideInfo'}`, title: `${showInfo ? '隐藏' : '查看'}批注`, disable: base64DataURL ? false : true },
-      { name: 'prev', iconfont: 'icon-prev', title: '上一页' },
-      { name: 'next', iconfont: `icon-next`, title: `下一页` },
+      { name: 'prev', iconfont: 'icon-prev', title: '上一项' },
+      { name: 'next', iconfont: `icon-next`, title: `下一项` },
       { name: 'close', iconfont: 'icon-close', title: '关闭' },
     ].filter(tool => {
       if (displayTools[0] === '*') {
@@ -116,7 +117,6 @@ class LightboxViewer extends Component {
         return displayTools.includes(tool.name)
       }
     })
-
     return (
       <div>
         <div className="lightbox-viewer-content" style={{ zIndex: 1015 }} >
@@ -141,11 +141,11 @@ class LightboxViewer extends Component {
             </div>
           }
         </div>
-        <div className="lightbox-viewer-footer" style={{ zIndex: 9999 }} >
-          <p className="lightbox-viewer-attribute">
-            <span className="lightbox-viewer-img-details">{`(${imgW} x ${imgH})`}</span>
-            <span className="lightbox-viewer-showTotal">{`${activeIndex + 1} of ${imgvImages.length}`}</span>
-          </p>
+        {visibleMap && showToolbar && <p className="lightbox-viewer-attribute">
+          <span className="lightbox-viewer-img-details">{`(${imgW} x ${imgH})`}</span>
+          <span className="lightbox-viewer-showTotal">{`${activeIndex + 1} of ${imgvImages.length}`}</span>
+        </p>}
+        {showToolbar && <div className="lightbox-viewer-toolbar" >
           <LightboxToolbar
             tools={tools}
             onZoomInClick={this.onZoomInClick}
@@ -157,12 +157,12 @@ class LightboxViewer extends Component {
             onAddInfoClick={onAddInfoClick}
             onCloseClick={onCloseClick}
           />
-          <LightboxNav
-            images={imgvImages}
-            activeIndex={activeIndex}
-            onChangeImg={this.handleChangeImg}
-          />
-        </div>
+        </div>}
+        {!visibleLink && showNav && <LightboxNav
+          images={imgvImages}
+          activeIndex={activeIndex}
+          onChangeImg={this.handleChangeImg}
+        />}
       </div>
     )
   }

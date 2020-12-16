@@ -95,21 +95,28 @@
     z-index: 1005;
   }
   
-  .lightbox-viewer-footer{
+  .lightbox-viewer-toolbar{
     position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    bottom: 60px;
+    left: 25%;
+    right: 25%;
     overflow: hidden;
     text-align: center;
-    z-index: 1005;
+    z-index:9999;
   }
   
-  .lightbox-viewer-footer .ant-btn{
+  .lightbox-viewer-toolbar .ant-btn{
     margin: 0 20px;
   }
   
   .lightbox-viewer-attribute{
+    position: fixed;
+    bottom: 102px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    text-align: center;
+    z-index: 9999;
     margin: 0px 20px;
     margin-bottom: 0px;
     opacity: 0.8;
@@ -123,6 +130,12 @@
   .lightbox-viewer-navbar{
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 9999;
   }
   
   .lightbox-viewer-navbar ul{
@@ -181,7 +194,7 @@
     width: 100% !important;
     margin-bottom: 10px;
   }
-  
+
   .react-img-editor-toolbar-icon i{
     font-size: 20px;
     cursor: pointer;

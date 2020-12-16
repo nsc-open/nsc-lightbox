@@ -7,6 +7,7 @@ import '../../assets/fonts/icon-font/iconfont.css'
 import './index.css'
 import "react-img-editor/assets/index.css"
 
+
 class Lightbox extends Component {
 
   state = {
@@ -83,7 +84,7 @@ class Lightbox extends Component {
   }
 
   render() {
-    const { imgvImages, visible, withDrawer, customTools ,activeIndex } = this.props
+    const { imgvImages, visible, withDrawer, customTools, activeIndex, showAttribute,showNav,showToolbar } = this.props
     const { imgvActiveImage, drawboxVisible } = this.state
     const { uri, base64DataURL } = imgvActiveImage
 
@@ -112,6 +113,9 @@ class Lightbox extends Component {
             onDeleteInfoClick={this.onDeleteInfoClick}
             onAddInfoClick={this.onAddInfoClick}
             onCloseClick={this.onCloseClick}
+            showToolbar={showToolbar}
+            showNav={showNav}
+            showAttribute={showAttribute}
           />
           : <Drawbox
             src={uri}
@@ -135,6 +139,9 @@ Lightbox.defaultProps = {
   visible: false,
   imgvImages: [],
   withDrawer: false,
+  showToolbar: true,
+  showAttribute: true,
+  showNav: true
 }
 
 export default Lightbox;
