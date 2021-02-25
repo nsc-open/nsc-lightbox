@@ -180,7 +180,8 @@ class LightboxViewer extends Component {
             onAddInfoClick={onAddInfoClick}
             onCloseClick={onCloseClick}
           />
-        </div>}
+        </div>
+        }
         {showNav && <LightboxNav
           images={imgvImages}
           activeIndex={activeIndex}
