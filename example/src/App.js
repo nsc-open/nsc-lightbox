@@ -55,10 +55,10 @@ const defaultFiles = [{
 const ossParams = {
   region: OSS_ENDPOINT,
   bucket: OSS_BUCKET,
-  accessKeyId: "STS.NUff6x81sVKWWBzrh8LSJuurh",
-  accessKeySecret: "F5ARFnrAZahw7HHfwkR9Lu7StxJ86Pw9EwRyDvpaWPTz",
-  Expiration: "2020-09-08T07:27:30Z",
-  stsToken: "CAISjgJ1q6Ft5B2yfSjIr5bTLYzM1e5S4Ym8VWTLlmhtQNxmmrDZijz2IHpEf3NhAO8Yt/swn2pY5vwclq19UZpOHYIJ9kfeqMY5yxioRqackf7XhOV2tf/IMGyXDAGBq622Su7lTdTbV+6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq/b9kI++kkOP0gagl75P/NisfMn+NJJWUc0hA4vv7otfbbHc1SNc0R9O+ZptgbZMkTW95YvNWAMAukrYarWLqYc/fFUnfNszH69Vsf77juZkve/ekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAFoSOwdbiAPck0UjcfPCoCvSfnnoGxpTWioGZ2YRE86rJ7hdmOJXI1KpCsh8sMniuXrw8pjbKmoNike9ql/WbJIk427uH4li34huGnWT4vp21oYunWj9TqLTMTG22ZAgvfp8a+pX2YZbvuNW7N+CIfkjM0M6Bhv0p/BVkQzmOKRYQ=="
+  accessKeyId: "STS.NUrDZeWCKL7xipUJCrQ321nPi",
+  accessKeySecret: "Bi7H9WQw2tMBg7cGCr5u7iMFiN3xcjDX7hzS6RZapoU2",
+  Expiration: "2021-02-25T06:29:12Z",
+  stsToken: "CAISjgJ1q6Ft5B2yfSjIr5bHD+DRupxq+/WTa1bkrkMnXbwe3qv7izz2IHpEf3NhAO8Yt/swn2pY5vwclq19UZpOHb85hxzlqMY5yxioRqackf7XhOV2tf/IMGyXDAGBq622Su7lTdTbV+6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq/b9kI++kkOP0gagl75P/NisfMn+NJJWUc0hA4vv7otfbbHc1SNc0R9O+ZptgbZMkTW95YvNWAMAukrYarWLqYc/fFUnfNszH69Vsf77juZkve/ekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAEoN92p3Zwuxxbl/vRkqszZ8gdUDXVQ+xw/ODe2AuNlT7jSnMqU2Gww3tnskDeJ/ZeDE1eopynlOS+PslNCZmee2DZsWskKFZvP2TVxTiblQtjXte8bfoJID2yxny/1V2ZFBLdrFVu7Yk3jyUuRTkdCUHSbQ4kaX4BKKVq2H1WPaw=="
 }
 
 

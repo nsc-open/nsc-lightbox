@@ -7,7 +7,6 @@ import '../../assets/fonts/icon-font/iconfont.css'
 import './index.css'
 import "react-img-editor/assets/index.css"
 
-
 class Lightbox extends Component {
 
   state = {
@@ -56,26 +55,17 @@ class Lightbox extends Component {
       } else if (result !== false) {
         this.onCloseClick()
       }
-    } else {
-      this.onDeleteClick()
     }
   }
 
   onDeleteClick = () => {
     const { imgvActiveImage } = this.state
-    confirm({
-      title: '删除确认',
-      content: `确认删除该批注？`,
-      onOk: () => {
-        const result = this.props.onDeleteInfoClick(imgvActiveImage)
-        if (result.then) {
-          result.then(r => r !== false && this.onCloseClick())
-        } else if (result !== false) {
-          this.onCloseClick()
-        }
-      }
-    })
-
+    const result = this.props.onDeleteInfoClick(imgvActiveImage)
+    if (result.then) {
+      result.then(r => r !== false && this.onCloseClick())
+    } else if (result !== false) {
+      this.onCloseClick()
+    }
   }
 
   onCloseClick = () => {
@@ -84,7 +74,7 @@ class Lightbox extends Component {
   }
 
   render() {
-    const { imgvImages, visible, withDrawer, customTools, activeIndex, showAttribute,showNav,showToolbar } = this.props
+    const { imgvImages, visible, withDrawer, customTools, activeIndex, showAttribute, showNav, showToolbar } = this.props
     const { imgvActiveImage, drawboxVisible } = this.state
     const { uri, base64DataURL } = imgvActiveImage
 

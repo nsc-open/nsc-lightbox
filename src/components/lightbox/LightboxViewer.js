@@ -8,16 +8,39 @@ import LightboxNav from './LightboxNav'
 import IFrame from './IFrame'
 import { message, Icon } from 'antd'
 
-const isLink = (img) => {
-  const fileType = img.fileType ? img.fileType : ''
-  return fileType && fileType.indexOf('pdf') !== -1 || img.fileExt.indexOf('doc') !== -1 || img.fileExt.indexOf('xls') !== -1
+
+const isImageFileType = (type) => !!type && type.indexOf('image') === 0;
+
+export const isImg = (file) => {
+  if (isImageFileType(file.fileType)) {
+    return true
+  }
+  const extension = file.fileExt ? file.fileExt : ''
+  if (
+    /(webp|svg|png|gif|jpg|jpeg|jfif|bmp|dpg|ico)$/i.test(extension)
+  ) {
+    return true;
+  }
+  if (extension) {
+    // other file types which have extension
+    return false
+  }
+  return true
 }
 
-const isImg = (img) => {
-  const fileType = img.fileType ? img.fileType : ''
-  return fileType && fileType.indexOf('image') !== -1
+const isLink = (file) => {
+  const extension = file.fileExt ? file.fileExt : ''
+  if (
+    /(pdf|doc|docx|xls|xlsx|ppt)$/i.test(extension)
+  ) {
+    return true;
+  }
+  if (extension) {
+    // other file types which have extension
+    return false;
+  }
+  return true
 }
-
 class LightboxViewer extends Component {
   state = {
     mapZoom: 1,
@@ -102,7 +125,7 @@ class LightboxViewer extends Component {
     const base64DataURL = imgvActiveImage ? imgvActiveImage.base64DataURL : ''
 
     const tools = customTools ? customTools : [
-      { name: 'zoomIn', iconfont: 'icon-zoomIn', title: '放大', disable: visibleLink ? true :false},
+      { name: 'zoomIn', iconfont: 'icon-zoomIn', title: '放大', disable: visibleLink ? true : false },
       { name: 'zoomOut', iconfont: 'icon-zoomOut', title: '缩小', disable: visibleLink ? true : false },
       { name: 'addInfo', iconfont: 'icon-formOutline', title: '添加批注' },
       { name: 'deleteInfo', iconfont: 'icon-deleteInfo', title: '删除批注', hidden: base64DataURL ? false : true },
