@@ -11,7 +11,7 @@ import { message, Icon } from 'antd'
 
 const isImageFileType = (type) => !!type && type.indexOf('image') === 0;
 
-export const isImg = (file) => {
+const isImg = (file) => {
   if (isImageFileType(file.fileType)) {
     return true
   }
@@ -19,7 +19,7 @@ export const isImg = (file) => {
   if (
     /(webp|svg|png|gif|jpg|jpeg|jfif|bmp|dpg|ico)$/i.test(extension)
   ) {
-    return true;
+    return true
   }
   if (extension) {
     // other file types which have extension
@@ -125,8 +125,8 @@ class LightboxViewer extends Component {
     const base64DataURL = imgvActiveImage ? imgvActiveImage.base64DataURL : ''
 
     const tools = customTools ? customTools : [
-      { name: 'zoomIn', iconfont: 'icon-zoomIn', title: '放大', disable: visibleLink ? true : false },
-      { name: 'zoomOut', iconfont: 'icon-zoomOut', title: '缩小', disable: visibleLink ? true : false },
+      { name: 'zoomIn', iconfont: 'icon-zoomIn', title: '放大' },
+      { name: 'zoomOut', iconfont: 'icon-zoomOut', title: '缩小' },
       { name: 'addInfo', iconfont: 'icon-formOutline', title: '添加批注' },
       { name: 'deleteInfo', iconfont: 'icon-deleteInfo', title: '删除批注', hidden: base64DataURL ? false : true },
       { name: 'showInfo', iconfont: `${showInfo ? 'icon-showInfo' : 'icon-hideInfo'}`, title: `${showInfo ? '隐藏' : '查看'}批注`, disable: base64DataURL ? false : true },
@@ -181,7 +181,7 @@ class LightboxViewer extends Component {
             onCloseClick={onCloseClick}
           />
         </div>}
-        {!visibleLink && showNav && <LightboxNav
+        {showNav && <LightboxNav
           images={imgvImages}
           activeIndex={activeIndex}
           onChangeImg={this.handleChangeImg}

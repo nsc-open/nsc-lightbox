@@ -55,10 +55,10 @@ const defaultFiles = [{
 const ossParams = {
   region: OSS_ENDPOINT,
   bucket: OSS_BUCKET,
-  accessKeyId: "STS.NUrDZeWCKL7xipUJCrQ321nPi",
-  accessKeySecret: "Bi7H9WQw2tMBg7cGCr5u7iMFiN3xcjDX7hzS6RZapoU2",
-  Expiration: "2021-02-25T06:29:12Z",
-  stsToken: "CAISjgJ1q6Ft5B2yfSjIr5bHD+DRupxq+/WTa1bkrkMnXbwe3qv7izz2IHpEf3NhAO8Yt/swn2pY5vwclq19UZpOHb85hxzlqMY5yxioRqackf7XhOV2tf/IMGyXDAGBq622Su7lTdTbV+6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq/b9kI++kkOP0gagl75P/NisfMn+NJJWUc0hA4vv7otfbbHc1SNc0R9O+ZptgbZMkTW95YvNWAMAukrYarWLqYc/fFUnfNszH69Vsf77juZkve/ekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAEoN92p3Zwuxxbl/vRkqszZ8gdUDXVQ+xw/ODe2AuNlT7jSnMqU2Gww3tnskDeJ/ZeDE1eopynlOS+PslNCZmee2DZsWskKFZvP2TVxTiblQtjXte8bfoJID2yxny/1V2ZFBLdrFVu7Yk3jyUuRTkdCUHSbQ4kaX4BKKVq2H1WPaw=="
+  accessKeyId: "STS.NUiZpJtYwrcTyFgpt5mGp2knj",
+  accessKeySecret: "94b4wZU2wi76CPpUD5B1AbQV2PVr1xCF1VHB9VZG2Xiz",
+  Expiration: "2021-02-25T07:36:04Z",
+  stsToken: "CAISjgJ1q6Ft5B2yfSjIr5bcEcr+mYZWxaG/e2DWlHRgYchc3a7FiDz2IHpEf3NhAO8Yt/swn2pY5vwclq19UZpOHc1S82PlqMY5yxioRqackf7XhOV2tf/IMGyXDAGBq622Su7lTdTbV+6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq/b9kI++kkOP0gagl75P/NisfMn+NJJWUc0hA4vv7otfbbHc1SNc0R9O+ZptgbZMkTW95YvNWAMAukrYarWLqYc/fFUnfNszH69Vsf77juZkve/ekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAF30zppDNNxZYUTmh5r/KuljCoCRo5v7TtZx3Q8rQDEPoLcnEbLxnkJMZkqTJPWR2L8gQAsOGoTQ+0PhwnPdO7hpoq+wbWrmfdS0HwhRfMXkqTczrKHwI04O9nZbnEPz4x67rFykqLZrv9Oh04lHjDTJkTzP0dZqkSmH+qB6Bg5aA=="
 }
 
 
@@ -161,7 +161,7 @@ class CusModal extends Component {
             activeIndex={lightboxIndex}
             displayTools={displayTools}
             onCancel={this.onCancel}
-            showNav={false}
+            showNav={true}
           /> : null
           }
         </div>
