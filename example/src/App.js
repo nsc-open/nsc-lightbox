@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Icon, message, Button } from 'antd'
 import { Lightbox } from 'nsc-lightbox'
 import { Uploader } from 'nsc-uploader'
+import 'antd/dist/antd.css'
 import BaseModal from './BaseModal'
 
 const OSS = require('ali-oss')
@@ -26,25 +27,7 @@ const defaultFiles = [{
   sortNo: "1",
   updatedAt: "2020-09-07 15:52:55",
   updatedBy: "1732",
-  uri: "http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/8e67209cd9a58cdfc9469edfa1484866_1599459834761",
-  volCode: null,
-  volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
-  volRevision: "7",
-}, {
-  category: "print",
-  createdAt: "2020-09-07 15:34:13",
-  createdBy: "1732",
-  encodedFileName: "647d57d9d156b144b276c0fcae9fd761_1599459834788",
-  fileExt: "jpg",
-  fileName: "微信图片_20200616152747.jpg",
-  fileSize: "41219",
-  fileType: "image/jpeg",
-  id: "24137692-f0df-11ea-8146-f9a5d6b3bf59",
-  isDeleted: null,
-  sortNo: "2",
-  updatedAt: "2020-09-07 15:52:55",
-  updatedBy: "1732",
-  uri: "http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/647d57d9d156b144b276c0fcae9fd761_1599459834788",
+  uri: "http://your.url",
   volCode: null,
   volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
   volRevision: "7",
@@ -54,11 +37,12 @@ const defaultFiles = [{
 const ossParams = {
   region: OSS_ENDPOINT,
   bucket: OSS_BUCKET,
-  accessKeyId: "STS.NUff6x81sVKWWBzrh8LSJuurh",
-  accessKeySecret: "F5ARFnrAZahw7HHfwkR9Lu7StxJ86Pw9EwRyDvpaWPTz",
-  Expiration: "2020-09-08T07:27:30Z",
-  stsToken: "CAISjgJ1q6Ft5B2yfSjIr5bTLYzM1e5S4Ym8VWTLlmhtQNxmmrDZijz2IHpEf3NhAO8Yt/swn2pY5vwclq19UZpOHYIJ9kfeqMY5yxioRqackf7XhOV2tf/IMGyXDAGBq622Su7lTdTbV+6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq/b9kI++kkOP0gagl75P/NisfMn+NJJWUc0hA4vv7otfbbHc1SNc0R9O+ZptgbZMkTW95YvNWAMAukrYarWLqYc/fFUnfNszH69Vsf77juZkve/ekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAFoSOwdbiAPck0UjcfPCoCvSfnnoGxpTWioGZ2YRE86rJ7hdmOJXI1KpCsh8sMniuXrw8pjbKmoNike9ql/WbJIk427uH4li34huGnWT4vp21oYunWj9TqLTMTG22ZAgvfp8a+pX2YZbvuNW7N+CIfkjM0M6Bhv0p/BVkQzmOKRYQ=="
+  accessKeyId: "yourkey",
+  accessKeySecret: "yoursecret",
+  Expiration: "2021-03-15T08:50:41Z",
+  stsToken: ""
 }
+
 
 class CusModal extends Component {
   constructor(props) {
@@ -86,7 +70,7 @@ class CusModal extends Component {
   handlePreview = async (file) => {
     console.log(file)
     const { fileList } = this.state
-    const lightboxImages = fileList.map(a => ({ ...a, alt: a.name, uri: isDoc(a) ? `https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(this.signatureUrl(a.uri))}` : this.signatureUrl(a.uri) }))
+    const lightboxImages = fileList.map(a => ({ ...a, alt: a.name, uri: isDoc(a) ? `https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(this.signatureUrl(a.uri))}` : a.uri }))
     const lightboxIndex = (fileList.map(a => a.id).indexOf(file.id) || 0)
     this.setState({
       lightboxImages,
@@ -145,7 +129,7 @@ class CusModal extends Component {
         ]
       }
     }
-    const displayTools = ['zoomIn', 'addInfo', 'zoomOut', 'prev', 'next', 'close',]
+    const displayTools = ['zoomIn', 'zoomOut', 'prev', 'next', 'close',]
     return (
       <BaseModal onVisible={this.onVisible}>
         <div style={{ margin: '50px', width: '50%' }}>
@@ -159,6 +143,7 @@ class CusModal extends Component {
             activeIndex={lightboxIndex}
             displayTools={displayTools}
             onCancel={this.onCancel}
+            showNav={true}
           /> : null
           }
         </div>
