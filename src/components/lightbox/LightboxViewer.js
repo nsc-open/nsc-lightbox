@@ -119,7 +119,7 @@ class LightboxViewer extends Component {
   }
 
   render() {
-    const { imgvImages, imgvActiveImage, onDeleteInfoClick, onAddInfoClick, onCloseClick, displayTools, customTools, showAttribute, showNav, showToolbar } = this.props
+    const { imgvImages, imgvActiveImage, onDeleteInfoClick, onSaveClick,onDownloadClick, onAddInfoClick, onCloseClick, displayTools, customTools, showAttribute, showNav, showToolbar } = this.props
     const { mapZoom, activeIndex, imgH, imgW, visibleLink, visibleMap, showInfo } = this.state
     const uri = imgvActiveImage ? imgvActiveImage.uri : ''
     const base64DataURL = imgvActiveImage ? imgvActiveImage.base64DataURL : ''
@@ -132,6 +132,8 @@ class LightboxViewer extends Component {
       { name: 'showInfo', iconfont: `${showInfo ? 'icon-showInfo' : 'icon-hideInfo'}`, title: `${showInfo ? '隐藏' : '查看'}批注`, disable: base64DataURL ? false : true },
       { name: 'prev', iconfont: 'icon-prev', title: '上一项' },
       { name: 'next', iconfont: `icon-next`, title: `下一项` },
+      { name: 'save', iconfont: `icon-save`, title: `保存` },
+      { name: 'download', iconfont: `icon-download`, title: `下载` },
       { name: 'close', iconfont: 'icon-close', title: '关闭' },
     ].filter(tool => {
       if (displayTools[0] === '*') {
@@ -178,6 +180,8 @@ class LightboxViewer extends Component {
             onShowInfoClick={this.onShowInfoClick}
             onDeleteInfoClick={onDeleteInfoClick}
             onAddInfoClick={onAddInfoClick}
+            onSaveClick={onSaveClick}
+            onDownloadClick={onDownloadClick}
             onCloseClick={onCloseClick}
           />
         </div>

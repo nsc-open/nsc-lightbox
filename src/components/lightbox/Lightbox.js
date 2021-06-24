@@ -2,11 +2,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import LightboxViewer from './LightboxViewer';
-import Drawbox from '../drawbox/Drawbox';
+import Drawbox from './Drawbox';
+import { downloadFile } from './utils'
+import ImgMerge from './ImgMerge'
+import Url from 'url-parse'
+
 import '../../assets/fonts/icon-font/iconfont.css'
 import './index.css'
 import "react-img-editor/assets/index.css"
 
+const isImageFileType = (type) => !!type && type.indexOf('image') === 0;
+
+const isImg = (file) => {
+  if (isImageFileType(file.fileType)) {
+    return true
+  }
+  const extension = file.fileExt ? file.fileExt : ''
+  if (
+    /(webp|svg|png|gif|jpg|jpeg|jfif|bmp|dpg|ico)$/i.test(extension)
+  ) {
+    return true
+  }
+  if (extension) {
+    // other file types which have extension
+    return false
+  }
+  return true
+}
 class Lightbox extends Component {
 
   state = {
@@ -46,37 +68,79 @@ class Lightbox extends Component {
     this.setState({ drawboxVisible: false })
   }
 
-  onSaveClick = (dataURL) => {
+  onSaveClick = () => {
+    const { onSaveInfo } = this.props
     const { imgvActiveImage } = this.state
-    if (dataURL) {
-      const result = this.props.onAddInfoClick(imgvActiveImage, dataURL)
-      if (result.then) {
-        result.then(r => r !== false && this.onCloseClick())
-      } else if (result !== false) {
-        this.onCloseClick()
-      }
-    }
+    onSaveInfo && onSaveInfo(imgvActiveImage)
+  }
+
+  onSaveAddInfoClick = (dataURL) => {
+    const { imgvActiveImage } = this.state
+    this.setState({ imgvActiveImage: { ...imgvActiveImage, base64DataURL: dataURL } })
+    this.onCancelDrawClick()
   }
 
   onDeleteClick = () => {
     const { imgvActiveImage } = this.state
-    const result = this.props.onDeleteInfoClick(imgvActiveImage)
-    if (result.then) {
-      result.then(r => r !== false && this.onCloseClick())
-    } else if (result !== false) {
-      this.onCloseClick()
+    this.setState({ imgvActiveImage: { ...imgvActiveImage, base64DataURL: '' } })
+    if (this.props.onDeleteInfoClick) {
+      this.props.onDeleteInfoClick(imgvActiveImage)
     }
   }
 
   onCloseClick = () => {
-    const { onCancel } = this.props
-    onCancel && onCancel()
+    const { drawboxVisible } = this.state
+    if (drawboxVisible) {
+      this.setState({ drawboxVisible: false })
+    } else {
+      const { onCancel } = this.props
+      onCancel && onCancel()
+    }
+  }
+
+  onDownloadClick = () => {
+    const { imgvActiveImage } = this.state
+    const { fileName, uri, base64DataURL, width, height } = imgvActiveImage
+    if (isImg(imgvActiveImage) && base64DataURL) {
+      let url = decodeURIComponent(uri)
+      const parsed = new Url(url, null, true)
+      parsed.query.time = new Date().valueOf()
+      url = parsed.toString()
+      const imgs = [
+        {
+          url: url,
+          width: width,
+          height: height
+        },
+        {
+          url: base64DataURL,
+          width: width,
+          height: height
+        }
+      ]
+      let imgMerge = new ImgMerge({ imgs })
+      imgMerge.outputImg()
+    } else {
+      downloadFile(uri, fileName)
+    }
+  }
+
+  onCancelDrawClick = () => {
+    this.setState({ drawboxVisible: false })
+  }
+
+  setImageSize = (width, height) => {
+    this.setState({ imgvActiveImage: { ...this.state.imgvActiveImage, width, height } })
   }
 
   render() {
     const { imgvImages, visible, withDrawer, customTools, activeIndex, showAttribute, showNav, showToolbar } = this.props
     const { imgvActiveImage, drawboxVisible } = this.state
     const { uri, base64DataURL } = imgvActiveImage
+    let url = decodeURIComponent(uri)
+    const parsed = new Url(url, null, true)
+    parsed.query.time = new Date().valueOf()
+    url = parsed.toString()
 
     const showStyle = {
       'opacity': 1,
@@ -87,7 +151,7 @@ class Lightbox extends Component {
       'display': 'none'
     }
 
-    const displayTools = withDrawer || customTools ? ['*'] : 'displayTools' in this.props ? this.props.displayTools : ['zoomIn', 'zoomOut', 'prev', 'next', 'close',]
+    const displayTools = withDrawer || customTools ? ['*'] : 'displayTools' in this.props ? this.props.displayTools : ['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close']
 
     return (
       <div className='lightbox-viewer lightbox-viewer-transition' style={visible ? showStyle : hiddenStyle}>
@@ -102,15 +166,18 @@ class Lightbox extends Component {
             displayTools={displayTools}
             onDeleteInfoClick={this.onDeleteInfoClick}
             onAddInfoClick={this.onAddInfoClick}
+            setImageSize={this.setImageSize}
+            onDownloadClick={this.onDownloadClick}
             onCloseClick={this.onCloseClick}
+            onSaveClick={this.onSaveClick}
             showToolbar={showToolbar}
             showNav={showNav}
             showAttribute={showAttribute}
           />
           : <Drawbox
-            src={uri}
-            onCloseClick={this.onCloseClick}
-            onSaveClick={this.onSaveClick}
+            src={url}
+            onCloseClick={this.onCancelDrawClick}
+            onSaveClick={this.onSaveAddInfoClick}
             dataURL={base64DataURL}
           />}
       </div>

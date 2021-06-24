@@ -20,7 +20,6 @@ export default class Drawbox extends Component {
   render() {
     const { width , height } = getWindowSize()
     const { src, onCloseClick ,visible ,onSaveClick } = this.props
-    //const src="http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/744e2d1b32a06e1b5b2d586ce6e3fea2"
     const url = src
     return (
       <div style={style} className='react-img-editor-mask'>
