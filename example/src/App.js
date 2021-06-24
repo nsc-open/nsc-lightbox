@@ -36,10 +36,10 @@ const defaultFiles = [{
   createdAt: "2020-09-07 15:34:13",
   createdBy: "1732",
   encodedFileName: "647d57d9d156b144b276c0fcae9fd761_1599459834788",
-  fileExt: "pdf",
-  fileName: "微信图片_20200616152747.pdf",
+  fileExt: "png",
+  fileName: "微信图片_20200616152747.png",
   fileSize: "41219",
-  fileType: "pdf",
+  fileType: "png",
   id: "24137692-f0df-11ea-8146-f9a5d6b3bf59",
   isDeleted: null,
   sortNo: "2",
@@ -147,7 +147,7 @@ class CusModal extends Component {
         ]
       }
     }
-    const displayTools = ['zoomIn', 'zoomOut', 'prev', 'next', 'close',]
+    const displayTools =['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close',]
     return (
       <BaseModal onVisible={this.onVisible}>
         <div style={{ margin: '50px', width: '50%' }}>
