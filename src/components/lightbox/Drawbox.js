@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import ReactImgEditor from "react-img-editor";
 import Export from "./draw-plugin/Export"
 import Close from "./draw-plugin/Close"
-import { getWindowSize } from '../lightbox/ui'
+import { getWindowSize } from './ui'
 import "react-img-editor/assets/index.css"
 
 //import './Drawbox.css'
