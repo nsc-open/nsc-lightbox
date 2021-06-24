@@ -11,8 +11,8 @@ const isDoc = (img) => {
   return img.fileExt.indexOf('doc') !== -1 || img.fileExt.indexOf('xls') !== -1
 }
 
-const OSS_ENDPOINT = 'oss-cn-beijing'
-const OSS_BUCKET = 'corridorcleaningphoto'
+const OSS_ENDPOINT = ''
+const OSS_BUCKET = ''
 const defaultFiles = [{
   category: "print",
   createdAt: "2020-09-07 15:34:13",
@@ -27,7 +27,7 @@ const defaultFiles = [{
   sortNo: "1",
   updatedAt: "2020-09-07 15:52:55",
   updatedBy: "1732",
-  uri: "http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/8e67209cd9a58cdfc9469edfa1484866_1599459834761",
+  uri: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
   volCode: null,
   volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
   volRevision: "7",
@@ -45,7 +45,7 @@ const defaultFiles = [{
   sortNo: "2",
   updatedAt: "2020-09-07 15:52:55",
   updatedBy: "1732",
-  uri: "http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/72fccc852992f4cedb9ecd72a4347655?OSSAccessKeyId=STS.NTbeoxomfetxDweJiVxEhYLHy&Expires=1608116352&Signature=swQTXSCmzUePlfllyRXlS742gjk%3D&security-token=CAISjgJ1q6Ft5B2yfSjIr5fXLtXMgrJH0raTRlHUrmkDdMpEtonjmzz2IHpEf3NhAO8Yt%2Fswn2pY5vwclq19UZpOHadnu3n%2BqMY5yxioRqackf7XhOV2tf%2FIMGyXDAGBq622Su7lTdTbV%2B6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq%2Fb9kI%2B%2BkkOP0gagl75P%2FNisfMn%2BNJJWUc0hA4vv7otfbbHc1SNc0R9O%2BZptgbZMkTW95YvNWAMAukrYarWLqYc%2FfFUnfNszH69Vsf77juZkve%2FekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAE0BPxohev1fAz9TK99InwxmyqaqCTRW1qz9oa4sn7aaeoRVU4a9uUp2OYeIHCXKTWq8vKUKXX7aZvo3YLRQWvyMYfiDw%2BUvmW%2F7KUpuAlt0VRtUOTBCRsm0lnjKINwiGxNmgnrcysTrOzNzxcRlSIUIo2YaVfnYLysPeIyHjNZbQ%3D%3D",
+  uri: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
   volCode: null,
   volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
   volRevision: "7",
@@ -54,11 +54,11 @@ const defaultFiles = [{
 
 const ossParams = {
   region: OSS_ENDPOINT,
-  bucket: OSS_BUCKET,
-  accessKeyId: "STS.NUiZpJtYwrcTyFgpt5mGp2knj",
-  accessKeySecret: "94b4wZU2wi76CPpUD5B1AbQV2PVr1xCF1VHB9VZG2Xiz",
+  bucket: '',
+  accessKeyId: "",
+  accessKeySecret: "",
   Expiration: "2021-02-25T07:36:04Z",
-  stsToken: "CAISjgJ1q6Ft5B2yfSjIr5bcEcr+mYZWxaG/e2DWlHRgYchc3a7FiDz2IHpEf3NhAO8Yt/swn2pY5vwclq19UZpOHc1S82PlqMY5yxioRqackf7XhOV2tf/IMGyXDAGBq622Su7lTdTbV+6wYlTf7EFayqf7cjPQMD7INoaS29wdLbZxZASjaidcD9p7PxZrrNRgVUHcLvGwKBXn8A2yaUNjoVh7kngtq/b9kI++kkOP0gagl75P/NisfMn+NJJWUc0hA4vv7otfbbHc1SNc0R9O+ZptgbZMkTW95YvNWAMAukrYarWLqYc/fFUnfNszH69Vsf77juZkve/ekYv6zRtXNP1SST7YQI2wOTsxuiVz4L0agAF30zppDNNxZYUTmh5r/KuljCoCRo5v7TtZx3Q8rQDEPoLcnEbLxnkJMZkqTJPWR2L8gQAsOGoTQ+0PhwnPdO7hpoq+wbWrmfdS0HwhRfMXkqTczrKHwI04O9nZbnEPz4x67rFykqLZrv9Oh04lHjDTJkTzP0dZqkSmH+qB6Bg5aA=="
+  stsToken: ""
 }
 
 
