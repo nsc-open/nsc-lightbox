@@ -20,12 +20,11 @@ export default class Drawbox extends Component {
   render() {
     const { width , height } = getWindowSize()
     const { src, onCloseClick ,visible ,onSaveClick } = this.props
-    const url = src
     return (
       <div style={style} className='react-img-editor-mask'>
         <Fragment>
           <ReactImgEditor
-            src={url}
+            src={src}
             getStage={this.setStage}
             plugins={[new Export({ onSaveClick: onSaveClick }),new Close({ onCloseClick:onCloseClick })]}
             width={width/2}
@@ -33,7 +32,9 @@ export default class Drawbox extends Component {
             toolbar={{
               items: ["pen", "text", "|", "repeal", "export" ,'close']
             }}
+            crossOrigin={'anonymous'}
           />
+          
         </Fragment>
       </div>
     );

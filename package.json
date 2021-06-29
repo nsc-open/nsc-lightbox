@@ -53,6 +53,6 @@
     "es"
   ],
   "dependencies": {
-    "react-img-editor": "0.1.4"
+    "react-img-editor": "^0.2.1"
   }
 }

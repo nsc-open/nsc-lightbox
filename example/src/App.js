@@ -4,6 +4,7 @@ import { Lightbox } from 'nsc-lightbox'
 import { Uploader } from 'nsc-uploader'
 import 'antd/dist/antd.css'
 import BaseModal from './BaseModal'
+import Url from 'url-parse'
 
 const OSS = require('ali-oss')
 
@@ -45,9 +46,7 @@ const defaultFiles = [{
   sortNo: "2",
   updatedAt: "2020-09-07 15:52:55",
   updatedBy: "1732",
-  uri: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-  volCode: null,
-  volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
+  uri: "http://corridorcleaningphoto.oss-cn-beijing.aliyuncs.com/65272c2cfeeb140e3f889ce26317bdae?OSSAccessKeyId=STS.NSrXAp1BQCmPymodiPqZ8iBFZ&Expires=1624949065&Signature=ZZVZPWkO%2FdGfF9kO%2BkiqLaLKUKc%3D&security-token=CAISjAZ1q6Ft5B2yfSjIr5DHE%2FvE3J1w9K%2B7e0vegGkFfdUUhoftuDz2IHpEf3NhAO8Yt%2Fswn2pY5vwclq19UZpOHfxD%2FxC9qcY5yxioRqackXPZj9Vd%2BnXMewW6Dxr8w7WMAYHQR8%2FcffGAck3NkjQJr5LxaTSlWS7TU%2FiOkoU1QdkLeQO6YDFaZrJRPRAwkNIGEnHTOP2xSEmI5FDdF011oAFxpHpi4KCkuK2m5wHZkUfxx51exc34KYP2aNJ3btUtEYW%2B2%2FZsd6bGyiVU5hFM9aF5lKxD5TC1VLj%2FbnBV5xKZSbS2lvRkMA5%2BYIUjBqdAt4KSvPZku%2BvV5fKVrhFWJrN6Xjj4ToKty9emfeSyLYQBaKrcMXbA2cz1H%2FuTiQ4%2FZm8BPw5nYscoLmQKaSYhUTbHMKSqih2oKQ6oUPqCy7pkk8g3nV7v58CLK1%2BVSLGU2CAZPJAkb0Q0MFlUr32DH4YCdwtTCQ0FY5%2BeUYR0aj1HtKrspne8fyZ8z3ZRzYucAvTNofIwZJnYVJBL2pZ%2FAZNdqDkSUkjQQbCjgVtuJA4De7tN17T3MpKS8aKMxP7pAdTLEfcaoF5XA0Sz3SOGUiFXNjajpI9hO1yD8IHO0azF9dZsHRMylMM9YCiBddFy1QIEh4K58xWU9sL6T3mu5RBW09LE%2Fo5Jmz0GG%2FC%2FmL29syL5tn6darVb%2FcDMQz9XXAiQcX50y%2Bzo1BBhnR0alHyuMBsy8kmY0X3KHPcWyfuW3HhJcNEx7e3TUGWn5X4yS4DLsbAQUqZ9YeBHVLOw0Bl1gb%2BVlX%2FdkonFtggfJ4yQXrA6YolOLgvu6aD2F78%2FkvNjCDmMAcw6sZdFlTCMxCku0v8Lc9lBcCg%2BPos%2BZqqOqoOarooGmbUg8PKcJ5ikX7%2F3jLKdKjHIUz0G1%2Bl6slE0LjyTrraIQFriCvR0%2B1nXih9dCBS7gtmlqGdYA8ndANtQ3O5dNy3c0ipVNvI3B%2FU%2B8oz3bYw%2FLXcDLJxnVFmuJfJn0%2BteJTV%2F%2FaosKKjQBS3C8FjU4f%2FxlwCGQ8kagAEzoNLiNOb7n00hMoK7SlargzUU4fhXx%2BJqCSrHy%2FyH8vc8ncSTqcS37rtII31jFSfpH9rPgErNmNyhqDWLXOWAKGrpdSXQdNfc33UjdV57UalcybCsNgr%2FzA%2Fy4xjoYUgequSbIKJmO81JiQpUlNKHb8y2hFjI5jP9eTyAXVxD6g%3D%3D",  volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
   volRevision: "7",
 }
 ]
@@ -66,7 +65,7 @@ class CusModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      fileList: [],
+      fileList: defaultFiles,
       previewVisible: false,
     }
   }
@@ -85,11 +84,10 @@ class CusModal extends Component {
     this.setState({ fileList: fileList })
   }
 
-  handlePreview = async (file) => {
-    console.log(file)
+  onPreview =  () => {
     const { fileList } = this.state
-    const lightboxImages = fileList.map(a => ({ ...a, alt: a.name, uri: isDoc(a) ? `https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(this.signatureUrl(a.uri))}` : a.uri }))
-    const lightboxIndex = (fileList.map(a => a.id).indexOf(file.id) || 0)
+    const lightboxImages = fileList
+    const lightboxIndex = 0
     this.setState({
       lightboxImages,
       previewVisible: true,
@@ -125,39 +123,14 @@ class CusModal extends Component {
   render() {
     const { previewVisible, lightboxImages, lightboxIndex, fileList } = this.state
 
-    let accept = "*"
 
-    const uploadProps = {
-      getOssParams: this.getOssParams,
-      multiple: true,
-      dragSortable: false,
-      onFileChange: this.onFileChange,
-      maxFileSize: 2,
-      accept,
-      onPreview: this.handlePreview,
-      onSortEnd: this.onSortEnd,
-      onDownload: this.onDownload,
-      defaultFiles: fileList,
-      showUploadList: 'showUploadList' in this.props ? this.props.showUploadList : { showDownloadIcon: true },
-      showRadioButton: 'showRadioButton' in this.props ? this.props.showRadioButton : {
-        placement: 'left',
-        radioItems: [
-          { key: 'picture-card', value: '网格' },
-          { key: 'text', value: '列表' }
-        ]
-      }
-    }
     const displayTools =['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close',]
     return (
-      <BaseModal onVisible={this.onVisible}>
-        <div style={{ margin: '50px', width: '50%' }}>
-          <Uploader
-            {...uploadProps}
-            showUploadList={{ showDownloadIcon: true }}
-          />
+        <div >
+          <a onClick={()=>this.onPreview()}>预览</a>
           {previewVisible && lightboxImages.length ? <Lightbox
             visible={previewVisible}
-            imgvImages={lightboxImages}
+            imgvImages={fileList}
             activeIndex={lightboxIndex}
             displayTools={displayTools}
             onCancel={this.onCancel}
@@ -165,7 +138,6 @@ class CusModal extends Component {
           /> : null
           }
         </div>
-      </BaseModal>
     )
   }
 }
