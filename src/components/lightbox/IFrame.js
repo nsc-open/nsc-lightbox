@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Spin } from 'antd'
+import Spin from 'antd/lib/spin'
 import './IFrame.css'
 
 /**

@@ -5,8 +5,6 @@ import Close from "./draw-plugin/Close"
 import { getWindowSize } from './ui'
 import "react-img-editor/assets/index.css"
 
-//import './Drawbox.css'
-
 const style ={
   display: 'flex',
   justifyContent: 'center',

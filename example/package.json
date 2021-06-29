@@ -9,7 +9,7 @@
     "lodash": "^4.17.15",
     "node_module": "^0.0.0",
     "nsc-lightbox": "link:..",
-    "nsc-uploader": "^2.1.8",
+    "nsc-uploader": "^2.2.25",
     "ol": "^6.3.1",
     "react": "^16.13.1",
     "react-dom": "16.13.1",

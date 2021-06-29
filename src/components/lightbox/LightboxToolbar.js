@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Tooltip } from 'antd'
+import Tooltip from 'antd/lib/tooltip'
 import 'react-img-editor/assets/index.css'
 import "react-img-editor/assets/iconfont.css"
 

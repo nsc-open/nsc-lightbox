@@ -8,7 +8,7 @@ import ImageLayer from "ol/layer/Image";
 import Projection from "ol/proj/Projection";
 import ImageStatic from "ol/source/ImageStatic";
 import { getWindowSize } from './ui'
-import { Spin } from 'antd'
+import Spin from 'antd/lib/spin'
 
 // Map views always need a projection.  Here we just want to map image
 // coordinates directly to map coordinates, so we create a projection that uses

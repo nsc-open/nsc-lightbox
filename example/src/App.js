@@ -5,6 +5,7 @@ import { Uploader } from 'nsc-uploader'
 import 'antd/dist/antd.css'
 import BaseModal from './BaseModal'
 import Url from 'url-parse'
+import Spin from 'antd/lib/tooltip'
 
 const OSS = require('ali-oss')
 
