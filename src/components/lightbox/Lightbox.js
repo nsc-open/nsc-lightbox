@@ -5,7 +5,6 @@ import LightboxViewer from './LightboxViewer';
 import Drawbox from './Drawbox';
 import { downloadFile } from './utils'
 import ImgMerge from './ImgMerge'
-import Url from 'url-parse'
 
 import '../../assets/fonts/icon-font/iconfont.css'
 import './index.css'

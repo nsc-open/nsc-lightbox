@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { findIndex } from 'lodash'
-import ReactDom from 'react-dom'
 import ImageStaticMap from './ImageStaticMap'
 import LightboxToolbar from './LightboxToolbar'
 import LightboxNav from './LightboxNav'
