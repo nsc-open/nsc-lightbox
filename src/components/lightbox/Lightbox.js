@@ -103,7 +103,6 @@ class Lightbox extends Component {
     const { fileName, uri, base64DataURL, width, height } = imgvActiveImage
     if (isImg(imgvActiveImage) && base64DataURL) {
       let url = uri + '&time=' + new Date().valueOf()
-      url = parsed.toString()
       const imgs = [
         {
           url: url,
