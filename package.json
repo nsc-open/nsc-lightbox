@@ -5,8 +5,8 @@
   "author": "aaxuyun",
   "license": "ISC",
   "repository": "https://github.com/nsc-open/nsc-lightbox.git",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "main": "es/index.js",
+  "jsnext:main": "es/index.modren.js",
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
@@ -22,7 +22,6 @@
   },
   "peerDependencies": {
     "antd": "3.x",
-    "lodash": "^4.17.15",
     "ol": "^6.3.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -51,7 +50,7 @@
     "rollup-plugin-url": "^3.0.1"
   },
   "files": [
-    "dist/index.js"
+    "es"
   ],
   "dependencies": {
     "react-img-editor": "^0.2.1"

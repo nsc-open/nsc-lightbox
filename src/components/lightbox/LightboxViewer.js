@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { findIndex } from 'lodash'
 import ImageStaticMap from './ImageStaticMap'
 import LightboxToolbar from './LightboxToolbar'
 import LightboxNav from './LightboxNav'
@@ -76,7 +75,7 @@ class LightboxViewer extends Component {
 
   onPrevClick = () => {
     const { imgvImages, imgvActiveImage, onChange } = this.props
-    let index = findIndex(imgvImages, i => i.uri === imgvActiveImage.uri)
+    let index = imgvImages.findIndex( i => i.uri === imgvActiveImage.uri)
     index = index - 1
     const prevImage = imgvImages[index]
     if (prevImage) {
@@ -89,7 +88,7 @@ class LightboxViewer extends Component {
 
   onNextClick = () => {
     const { imgvImages, imgvActiveImage, onChange } = this.props
-    let index = findIndex(imgvImages, i => i.uri === imgvActiveImage.uri)
+    let index = imgvImages.findIndex(i => i.uri === imgvActiveImage.uri)
     index = index + 1
     const nextImage = imgvImages[index]
     if (nextImage) {
