@@ -5,6 +5,7 @@ import LightboxViewer from './LightboxViewer';
 import Drawbox from './Drawbox';
 import { downloadFile } from './utils'
 import ImgMerge from './ImgMerge'
+import Url from 'url-parse'
 
 import '../../assets/fonts/icon-font/iconfont.css'
 import './index.css'
@@ -101,7 +102,10 @@ class Lightbox extends Component {
     const { imgvActiveImage } = this.state
     const { fileName, uri, base64DataURL, width, height } = imgvActiveImage
     if (isImg(imgvActiveImage) && base64DataURL) {
-      let url = uri + '&time=' + new Date().valueOf()
+      const parsed = new Url(uri, null, true)
+      parsed.query.time = new Date().valueOf()
+      const url = parsed.toString()
+      console.log(url)
       const imgs = [
         {
           url: url,
@@ -133,8 +137,10 @@ class Lightbox extends Component {
     const { imgvImages, visible, withDrawer, customTools, activeIndex, showAttribute, showNav, showToolbar } = this.props
     const { imgvActiveImage, drawboxVisible } = this.state
     const { uri, base64DataURL } = imgvActiveImage
-    let url = uri + '&time=' + new Date().valueOf()
-
+    const parsed = new Url(uri, null, true)
+    parsed.query.time = new Date().valueOf()
+    const url = parsed.toString()
+    console.log(url)
     const showStyle = {
       'opacity': 1,
       'display': 'block'
