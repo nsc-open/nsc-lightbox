@@ -1,8 +1,8 @@
-import  React from 'react'
+import React, { Component } from 'react'
 
 const prefixCls = 'lightbox-viewer'
 
-export default class LightboxNav extends React.Component{
+export default class LightboxNav extends Component {
   handleChangeImg = (newIndex) => {
     if (this.props.activeIndex === newIndex) {
       return
@@ -10,7 +10,7 @@ export default class LightboxNav extends React.Component{
     this.props.onChangeImg(newIndex)
   }
 
-  render(){
+  render() {
     const { activeIndex = 0 } = this.props
     let marginLeft = `calc(50% - ${activeIndex + 1} * 31px)`
     let listStyle = {
@@ -21,13 +21,13 @@ export default class LightboxNav extends React.Component{
         <ul className={`${prefixCls}-list ${prefixCls}-list-transition`} style={listStyle}>
           {this.props.images.map((item, index) =>
             <li
-            key={index}
-            className={index === activeIndex ? 'active' : ''}
-            onClick={() => {this.handleChangeImg(index) }}
+              key={index}
+              className={index === activeIndex ? 'active' : ''}
+              onClick={() => { this.handleChangeImg(index) }}
             >
-              <img src={item.uri}  />
+              <img src={item.uri} />
             </li>,
-            )
+          )
           }
         </ul>
       </div>
