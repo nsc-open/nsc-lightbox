@@ -102,9 +102,7 @@ class Lightbox extends Component {
     const { imgvActiveImage } = this.state
     const { fileName, uri, base64DataURL, width, height } = imgvActiveImage
     if (isImg(imgvActiveImage) && base64DataURL) {
-      let url = decodeURIComponent(uri)
-      const parsed = new Url(url, null, true)
-      parsed.query.time = new Date().valueOf()
+      let url = uri + '&time=' + new Date().valueOf()
       url = parsed.toString()
       const imgs = [
         {
@@ -137,10 +135,7 @@ class Lightbox extends Component {
     const { imgvImages, visible, withDrawer, customTools, activeIndex, showAttribute, showNav, showToolbar } = this.props
     const { imgvActiveImage, drawboxVisible } = this.state
     const { uri, base64DataURL } = imgvActiveImage
-    let url = decodeURIComponent(uri)
-    const parsed = new Url(url, null, true)
-    parsed.query.time = new Date().valueOf()
-    url = parsed.toString()
+    let url = uri + '&time=' + new Date().valueOf()
 
     const showStyle = {
       'opacity': 1,

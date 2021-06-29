@@ -47,6 +47,7 @@ const defaultFiles = [{
   updatedAt: "2020-09-07 15:52:55",
   updatedBy: "1732",
   uri: "",
+  volId: "ef31a5d3-eb54-11ea-abe5-735dc8c1a294",
   volRevision: "7",
 }
 ]
@@ -84,7 +85,7 @@ class CusModal extends Component {
     this.setState({ fileList: fileList })
   }
 
-  onPreview =  () => {
+  onPreview = () => {
     const { fileList } = this.state
     const lightboxImages = fileList
     const lightboxIndex = 0
@@ -124,20 +125,20 @@ class CusModal extends Component {
     const { previewVisible, lightboxImages, lightboxIndex, fileList } = this.state
 
 
-    const displayTools =['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close',]
+    const displayTools = ['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close',]
     return (
-        <div >
-          <a onClick={()=>this.onPreview()}>预览</a>
-          {previewVisible && lightboxImages.length ? <Lightbox
-            visible={previewVisible}
-            imgvImages={fileList}
-            activeIndex={lightboxIndex}
-            displayTools={displayTools}
-            onCancel={this.onCancel}
-            showNav={true}
-          /> : null
-          }
-        </div>
+      <div >
+        <a onClick={() => this.onPreview()}>预览</a>
+        {previewVisible && lightboxImages.length ? <Lightbox
+          visible={previewVisible}
+          imgvImages={fileList}
+          activeIndex={lightboxIndex}
+          displayTools={displayTools}
+          onCancel={this.onCancel}
+          showNav={true}
+        /> : null
+        }
+      </div>
     )
   }
 }
