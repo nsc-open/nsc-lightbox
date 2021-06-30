@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, message, Button } from 'antd'
 import { Lightbox } from 'nsc-lightbox'
-import { Uploader } from 'nsc-uploader'
 import 'antd/dist/antd.css'
-import BaseModal from './BaseModal'
-import Url from 'url-parse'
-import Spin from 'antd/lib/tooltip'
 
 const OSS = require('ali-oss')
 
@@ -136,7 +132,6 @@ class CusModal extends Component {
           activeIndex={lightboxIndex}
           displayTools={displayTools}
           onCancel={this.onCancel}
-          showNav={true}
         /> : null
         }
       </div>

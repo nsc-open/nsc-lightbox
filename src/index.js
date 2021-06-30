@@ -1,4 +1,5 @@
-import Lightbox from './components/lightbox/index.js'
+import Lightbox from './components/lightbox'
 
 export { Lightbox }
+
 export default { Lightbox }
