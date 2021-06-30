@@ -5,9 +5,9 @@
   "author": "aaxuyun",
   "license": "ISC",
   "repository": "https://github.com/nsc-open/nsc-lightbox.git",
-  "main": "es/index.js",
-  "module": "es/index.js",
-  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
   "engines": {
     "node": ">=10"
   },
