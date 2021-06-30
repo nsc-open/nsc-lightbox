@@ -126,7 +126,7 @@ class LightboxViewer extends Component {
       { name: 'zoomIn', iconfont: 'icon-zoomIn', title: '放大' },
       { name: 'zoomOut', iconfont: 'icon-zoomOut', title: '缩小' },
       { name: 'addInfo', iconfont: 'icon-formOutline', title: '添加批注' },
-      { name: 'deleteInfo', iconfont: 'icon-deleteInfo', title: '删除批注', hidden: base64DataURL ? false : true },
+      { name: 'deleteInfo', iconfont: 'icon-delete-info', title: '删除批注', hidden: base64DataURL ? false : true },
       { name: 'showInfo', iconfont: `${showInfo ? 'icon-showInfo' : 'icon-hideInfo'}`, title: `${showInfo ? '隐藏' : '查看'}批注`, disable: base64DataURL ? false : true },
       { name: 'prev', iconfont: 'icon-prev', title: '上一项' },
       { name: 'next', iconfont: `icon-next`, title: `下一项` },

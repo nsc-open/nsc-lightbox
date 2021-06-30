@@ -110,7 +110,6 @@ class CusModal extends Component {
   }
 
   onCancel = () => {
-    console.log('onCancel')
     this.setState({ previewVisible: false, lightboxImages: [] })
   }
 
