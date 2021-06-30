@@ -1,6 +1,7 @@
-export default class ImgMerge {
+ class ImgMerge {
   constructor({
-    imgs = [], options
+    imgs = [],
+    options = {}
   }) {
     let defaultImgsItem = {
       url: '',
@@ -94,3 +95,5 @@ export default class ImgMerge {
   }
 
 }
+
+export default ImgMerge

@@ -105,7 +105,6 @@ class Lightbox extends Component {
       const parsed = new Url(uri, null, true)
       parsed.query.time = new Date().valueOf()
       const url = parsed.toString()
-      console.log(url)
       const imgs = [
         {
           url: url,
@@ -140,7 +139,6 @@ class Lightbox extends Component {
     const parsed = new Url(uri, null, true)
     parsed.query.time = new Date().valueOf()
     const url = parsed.toString()
-    console.log(url)
     const showStyle = {
       'opacity': 1,
       'display': 'block'
@@ -150,7 +148,7 @@ class Lightbox extends Component {
       'display': 'none'
     }
 
-    const displayTools = withDrawer || customTools ? ['*'] : 'displayTools' in this.props ? this.props.displayTools : ['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close']
+    const displayTools = withDrawer || customTools ? ['*'] : 'displayTools' in this.props ? this.props.displayTools : [ 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close']
 
     return (
       <div className='lightbox-viewer lightbox-viewer-transition' style={visible ? showStyle : hiddenStyle}>

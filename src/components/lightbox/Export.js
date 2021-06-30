@@ -1,4 +1,4 @@
-import Plugin from "react-img-editor/es/plugins/Plugin";
+import Plugin from "react-img-editor/es/plugins/Plugin"
 
 export default class Export extends Plugin {
   constructor(options) {

@@ -1271,7 +1271,8 @@ var ImgMerge = function ImgMerge(_ref) {
 
   var _ref$imgs = _ref.imgs,
       imgs = _ref$imgs === void 0 ? [] : _ref$imgs,
-      options = _ref.options;
+      _ref$options = _ref.options,
+      options = _ref$options === void 0 ? {} : _ref$options;
 
   _classCallCheck(this, ImgMerge);
 
@@ -1500,7 +1501,6 @@ var Lightbox = /*#__PURE__*/function (_Component) {
         var parsed = new Url(uri, null, true);
         parsed.query.time = new Date().valueOf();
         var url = parsed.toString();
-        console.log(url);
         var imgs = [{
           url: url,
           width: width,
@@ -1581,7 +1581,6 @@ var Lightbox = /*#__PURE__*/function (_Component) {
       var parsed = new Url(uri, null, true);
       parsed.query.time = new Date().valueOf();
       var url = parsed.toString();
-      console.log(url);
       var showStyle = {
         'opacity': 1,
         'display': 'block'
@@ -1589,7 +1588,7 @@ var Lightbox = /*#__PURE__*/function (_Component) {
       var hiddenStyle = {
         'display': 'none'
       };
-      var displayTools = withDrawer || customTools ? ['*'] : 'displayTools' in this.props ? this.props.displayTools : ['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close'];
+      var displayTools = withDrawer || customTools ? ['*'] : 'displayTools' in this.props ? this.props.displayTools : ['zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close'];
       return /*#__PURE__*/React.createElement("div", {
         className: "lightbox-viewer lightbox-viewer-transition",
         style: visible ? showStyle : hiddenStyle
