@@ -1,4 +1,15 @@
-import { notification } from 'antd'
+import notification from 'antd/lib/notification'
+
+
+export const xhrDownload = (url, onProgress = () => { }, onComplete = () => { }, type = "blob") => {
+  const xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", url, true);
+  xmlhttp.responseType = type;
+  xmlhttp.setRequestHeader("Cache-Control", "no-cache");
+  xmlhttp.onprogress = (event) => onProgress(event.loaded / event.total);
+  xmlhttp.onload = () => onComplete(xmlhttp.response);
+  xmlhttp.send();
+};
 
 export const downloadFile = async (
   uri,
@@ -29,13 +40,3 @@ export const downloadFile = async (
     }
   )
 }
-
-const xhrDownload = (url, onProgress = () => { }, onComplete = () => { }, type = "blob") => {
-  const xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", url, true);
-  xmlhttp.responseType = type;
-  xmlhttp.setRequestHeader("Cache-Control", "no-cache");
-  xmlhttp.onprogress = (event) => onProgress(event.loaded / event.total);
-  xmlhttp.onload = () => onComplete(xmlhttp.response);
-  xmlhttp.send();
-};

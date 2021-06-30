@@ -122,7 +122,7 @@ class CusModal extends Component {
     const { previewVisible, lightboxImages, lightboxIndex, fileList } = this.state
 
 
-    // const displayTools = ['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close',]
+    const displayTools = ['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close',]
     return (
       <div >
         <a onClick={() => this.onPreview()}>预览</a>
@@ -130,6 +130,7 @@ class CusModal extends Component {
           visible={previewVisible}
           imgvImages={fileList}
           activeIndex={lightboxIndex}
+          displayTools={displayTools}
           onCancel={this.onCancel}
         /> : null
         }
@@ -148,7 +149,7 @@ class App extends Component {
   }
   render() {
     return (
-      <CusModal><Button>click</Button></CusModal>
+      <CusModal />
     )
   }
 }

@@ -28,6 +28,9 @@ import resolve from 'rollup-plugin-node-resolve'
 import url from 'rollup-plugin-url'
 import svgr from '@svgr/rollup'
 import pkg from './package.json'
+
+const external = Object.keys(pkg.dependencies)
+
 export default {
   input: 'src/index.js',
   output: [
@@ -55,12 +58,18 @@ export default {
     url(),
     svgr(),
     babel({
-       exclude: 'node_modules/**',
-       babelHelpers: 'bundled'
+      include: 'src/**',
+      babelHelpers: 'bundled',
     }),
-    resolve(),
+    resolve({
+      browser: true,
+      extensions: ['.js'],
+      jsnext: true,
+      main: true
+    }),
     commonjs({
       namedExports: { 'react-is': ['isMemo'] },
     })
-  ]
+  ],
+  external: id => external.some(e => id.indexOf(e) === 0)
 }
