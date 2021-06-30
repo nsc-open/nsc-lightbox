@@ -6,7 +6,7 @@
   "license": "ISC",
   "repository": "https://github.com/nsc-open/nsc-lightbox.git",
   "main": "es/index.js",
-  "jsnext:main": "es/index.modren.js",
+  "jsnext:main": "es/index.js",
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
