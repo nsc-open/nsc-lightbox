@@ -20,7 +20,7 @@
 
 // export default rollupConfig
 
-import babel from '@rollup/plugin-babel'
+import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
@@ -59,7 +59,8 @@ export default {
     svgr(),
     babel({
       include: 'src/**',
-      babelHelpers: 'bundled',
+      babelrc: true,
+      runtimeHelpers: true,
     }),
     resolve({
       browser: true,
