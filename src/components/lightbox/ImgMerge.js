@@ -66,7 +66,6 @@
 
   // 导出图片
   outputImg = () => {
-    console.log('导出')
     let imgArr = [];
     // 将单张图片的Promise对象存入数组
     this.imgs.forEach((item, i) => {

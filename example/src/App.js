@@ -117,11 +117,15 @@ class CusModal extends Component {
     this.setState({ fileList: defaultFiles })
   }
 
+  onSaveInfo=(img)=>{
+    console.log(img.base64DataURL)
+  }
+
   render() {
     const { previewVisible, lightboxImages, lightboxIndex, fileList } = this.state
 
 
-    const displayTools = ['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close',]
+    const displayTools = ['addInfo', 'showInfo', 'deleteInfo', 'zoomIn', 'zoomOut', 'prev','save', 'next', 'download', 'close',]
     return (
       <div >
         <a onClick={() => this.onPreview()}>预览</a>
@@ -131,6 +135,7 @@ class CusModal extends Component {
           activeIndex={lightboxIndex}
           displayTools={displayTools}
           onCancel={this.onCancel}
+          onSaveInfo={this.onSaveInfo}
         /> : null
         }
       </div>

@@ -14,8 +14,6 @@ export const xhrDownload = (url, onProgress = () => { }, onComplete = () => { },
 export const downloadFile = async (
   uri,
   filename,
-  onProgress,
-  onComplete = () => { }
 ) => {
   xhrDownload(
     uri,

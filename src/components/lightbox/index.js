@@ -101,7 +101,9 @@ class Lightbox extends Component {
   onDownloadClick = () => {
     const { imgvActiveImage } = this.state
     const { fileName, uri, base64DataURL, width, height } = imgvActiveImage
+    console.log('imgvActiveImage',imgvActiveImage)
     if (isImg(imgvActiveImage) && base64DataURL) {
+      // console.log('base64DataURL',base64DataURL)
       const parsed = new Url(uri, null, true)
       parsed.query.time = new Date().valueOf()
       const url = parsed.toString()

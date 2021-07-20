@@ -44,8 +44,8 @@ class LightboxViewer extends Component {
     mapZoom: 1,
     visibleMap: false,
     activeIndex: 0,
-    imgH: 0,
-    imgW: 0,
+    height: 0,
+    width: 0,
     visibleLink: false,
     showInfo: true,
   }
@@ -75,7 +75,7 @@ class LightboxViewer extends Component {
 
   onPrevClick = () => {
     const { imgvImages, imgvActiveImage, onChange } = this.props
-    let index = imgvImages.findIndex( i => i.uri === imgvActiveImage.uri)
+    let index = imgvImages.findIndex(i => i.uri === imgvActiveImage.uri)
     index = index - 1
     const prevImage = imgvImages[index]
     if (prevImage) {
@@ -112,13 +112,14 @@ class LightboxViewer extends Component {
   }
 
   getImageSize = ({ width, height }) => {
-    console.log('width', width, height)
-    this.setState({ imgW: width, imgH: height })
+    const { setImageSize } = this.props
+    this.setState({ width: width, height: height })
+    setImageSize && setImageSize(width, height)
   }
 
   render() {
-    const { imgvImages, imgvActiveImage, onDeleteInfoClick, onSaveClick,onDownloadClick, onAddInfoClick, onCloseClick, displayTools, customTools, showAttribute, showNav, showToolbar } = this.props
-    const { mapZoom, activeIndex, imgH, imgW, visibleLink, visibleMap, showInfo } = this.state
+    const { imgvImages, imgvActiveImage, onDeleteInfoClick, onSaveClick, onDownloadClick, onAddInfoClick, onCloseClick, displayTools, customTools, showAttribute, showNav, showToolbar } = this.props
+    const { mapZoom, activeIndex, height, width, visibleLink, visibleMap, showInfo } = this.state
     const uri = imgvActiveImage ? imgvActiveImage.uri : ''
     const base64DataURL = imgvActiveImage ? imgvActiveImage.base64DataURL : ''
 
@@ -165,7 +166,7 @@ class LightboxViewer extends Component {
           }
         </div>
         {visibleMap && showToolbar && <p className="lightbox-viewer-attribute">
-          <span className="lightbox-viewer-img-details">{`(${imgW} x ${imgH})`}</span>
+          <span className="lightbox-viewer-img-details">{`(${width} x ${height})`}</span>
           <span className="lightbox-viewer-showTotal">{`${activeIndex + 1} of ${imgvImages.length}`}</span>
         </p>}
         {showToolbar && <div className="lightbox-viewer-toolbar" >
