@@ -100,11 +100,10 @@ class Lightbox extends Component {
 
   onDownloadClick = () => {
     const { imgvActiveImage } = this.state
-    const { fileName, uri, base64DataURL, width, height } = imgvActiveImage
-    console.log('imgvActiveImage',imgvActiveImage)
+    const { fileName, uri, originUri, base64DataURL, width, height } = imgvActiveImage
     if (isImg(imgvActiveImage) && base64DataURL) {
       // console.log('base64DataURL',base64DataURL)
-      const parsed = new Url(uri, null, true)
+      const parsed = new Url(originUri, null, true)
       parsed.query.time = new Date().valueOf()
       const url = parsed.toString()
       const imgs = [
@@ -122,7 +121,7 @@ class Lightbox extends Component {
       let imgMerge = new ImgMerge({ imgs })
       imgMerge.outputImg()
     } else {
-      downloadFile(uri, fileName)
+      downloadFile(originUri, fileName)
     }
   }
 
@@ -150,7 +149,7 @@ class Lightbox extends Component {
       'display': 'none'
     }
 
-    const displayTools = withDrawer || customTools ? ['*'] : 'displayTools' in this.props ? this.props.displayTools : [ 'zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close']
+    const displayTools = withDrawer || customTools ? ['*'] : 'displayTools' in this.props ? this.props.displayTools : ['zoomIn', 'zoomOut', 'prev', 'next', 'download', 'close']
 
     return (
       <div className='lightbox-viewer lightbox-viewer-transition' style={visible ? showStyle : hiddenStyle}>
